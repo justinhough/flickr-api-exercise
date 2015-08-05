@@ -66,14 +66,14 @@ function _flickrTemplate(data){
     
     // append each result (image) to variable
     results += '<div id="'+item.id+'" class="flickr_item">'+
-          '<a href="'+item.url_o+'" title="'+item.title+'" data-lightbox="flickr" data-title="'+item.title+'">'+
-            '<div class="flickr_img_wrapper" style="background-image:url('+item.url_m+');"></div>'+
-            '<div class="flickr_title_wrapper">'+
-              '<h2 class="flickr_img_title">'+item.title+'</h2>'+
-            '</div>'+
-            tags_wrapper +
-          '</a>'+
-        '</div>';
+            '<a href="'+item.url_o+'" title="'+item.title+'" data-lightbox="flickr" data-title="'+item.title+'">'+
+              '<div class="flickr_img_wrapper" style="background-image:url('+item.url_m+');"></div>'+
+              '<div class="flickr_title_wrapper">'+
+                '<h2 class="flickr_img_title">'+item.title+'</h2>'+
+              '</div>'+
+              tags_wrapper +
+            '</a>'+
+          '</div>';
     
   });
 
@@ -81,14 +81,13 @@ function _flickrTemplate(data){
 
 }
 
-
-function _getPhotos(){
-  $.getJSON(flickr_URL + query(params),
-    function (data) {  
-      
-      //console.log(data);
-      //console.log(flickr_URL + query(params));
-          
+function _getPhotos(option){
+  if (option) {
+    var sort = '&sort=' + option;
+  }
+  
+  $.getJSON(flickr_URL + query(params) + sort,
+    function (data) {
       $.each(data.photos.photo, function (i, item) {
         _flickrTemplate(data);
       });
