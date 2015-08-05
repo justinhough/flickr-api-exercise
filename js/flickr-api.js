@@ -41,25 +41,30 @@ function query(params) {
 
 
 function _getPhotos(){
+  var results = '';
+
   $.getJSON(flickrUrl + query(params),
     function (data) {
       
-      var results = '';
-      
-      console.log(data);
+      console.log(flickrUrl + query(params));
       
       $.each(data.photos.photo, function (i, item) {
         
-        results = '<div id="' + item.id + '" class="flickr_item">'+
-                      '<img src="' + item.url_m + '" alt="' + item.title + '" />'+
-                      '<h2 class="flickr_img_title">' + item.title + ' - ' + item.id + '</h2>'+
-                    '</a>'+
-                  '</div>';
-        
-        
-        $('#flickrContainer').append(results);
+        // append each image to variable results
+        results += '<div id="'+item.id+'" class="flickr_img flickr_item">'+
+          '<a href="'+item.url_l+'" title="'+item.title+'" data-lightbox="flickr" data-title="'+item.title+'">'+
+            '<div class="flickr_img_wrapper" style="background-image:url('+item.url_m+');">'+
+              //'<img src="'+item.url_m+'" alt="'+item.title+'" />'+
+            '</div>'+
+            '<div class="flickr_title_wrapper">'+
+              '<h2 class="flickr_img_title">'+item.title+'</h2>'+
+            '</div>'+
+          '</a>'+
+        '</div>';
         
       });
+      
+      $('#flickrContainer').html(results);
     }
   );
 }
