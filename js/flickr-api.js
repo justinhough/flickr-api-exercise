@@ -113,7 +113,6 @@ function _paginatePhotos(getPage){
   $.getJSON(flickr_URL + query(params) + '&page=' + getPage,
     function (data) {
 
-      console.log(data);
 
       // Checking object
       var current_page = data.photos.page,
@@ -157,7 +156,7 @@ $(document).ready( function(){
   $('#search_tags').keyup(function(e) {
     if (e.keyCode == 13) {
       var sVal = $(this).val();
-      console.log(sVal);
+      //console.log(sVal);
       
       if (!sVal){
         // do nothing
@@ -168,4 +167,10 @@ $(document).ready( function(){
       }    
     }
   });
+  
+  $('.flickr_navigate_sort_show_mobile').click( function() {
+    $(this).toggleClass('sort_mobile_show_mobile_active');
+    $('.flickr_navigate_sort_mobile_wrapper').toggleClass('sort_mobile_active');
+  });
+  
 });
