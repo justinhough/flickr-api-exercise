@@ -1,0 +1,8 @@
+.flickr_item {
+  float: left;
+  width: 25%;
+}
+.flickr_item img {
+  height: auto;
+  width: 100%;
+}
