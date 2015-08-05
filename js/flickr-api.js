@@ -1,14 +1,47 @@
-// URL Example
-// https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=2aaa4bca5ad82a50eebeb80bd04f5564&user_id=132365033@N08&extras=description,date_upload,date_taken,owner_name,icon_server,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_s,url_m,url_l,url_o&per_page=12&format=json&nojsoncallback=1
-
-
 // Flickr REST Url and API Key as variables
 var flickrUrl = "https://api.flickr.com/services/rest/",
     API_KEY = '2aaa4bca5ad82a50eebeb80bd04f5564';
     
+var params = {
+  "method": "flickr.people.getPhotos",
+  "api_key": API_KEY,
+  "user_id": '132365033@N08', // IBM
+  "extras": [
+      "description",
+      "date_upload",
+      "date_taken",
+      "owner_name",
+      "icon_server",
+      "geo",
+      "tags",
+      "machine_tags",
+      "o_dims",
+      "views",
+      "media",
+      "path_alias",
+      "url_sq",
+      "url_s",
+      "url_m",
+      "url_l",
+      "url_o"
+  ],
+  "per_page": 12,
+  "format": "json",
+  "nojsoncallback": "1",
+}
+
+
+function query(params) {
+  var query_str = "?";
+  for (var param_arg in params) {
+    query_str += param_arg + "=" + (params[param_arg].constructor == Array ? params[param_arg].join(",") : params[param_arg]) + "&";
+  }
+  return query_str.substring(0, query_str.length - 1);
+}
+
 
 function _getPhotos(){
-  $.getJSON(flickrUrl + '?method=flickr.people.getPhotos&api_key='+API_KEY+'&user_id=132365033@N08&extras=description,date_upload,date_taken,owner_name,icon_server,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_s,url_m,url_l,url_o&per_page=12&format=json&nojsoncallback=1',
+  $.getJSON(flickrUrl + query(params),
     function (data) {
       
       var results = '';
