@@ -32,10 +32,21 @@
           <h2>Check Out Some Amazing Shots</h2>
         </header>
 
+        <div id="flickr_navigate_sort">
+          <span class="flickr_navigate_sort_show_mobile">Show Filters</span>
+          <div class="flickr_navigate_sort_mobile_wrapper">
+            <a class="flickr_navigate_sort_option" onclick="_getPhotos('date-posted-asc')">Date Posted Asc</a>
+            <a class="flickr_navigate_sort_option" onclick="_getPhotos('date-posted-desc')">Date Posted Desc</a>            
+            <a class="flickr_navigate_sort_option" onclick="_getPhotos('date-taken-desc')">Date Taken Asc</a>
+            <a class="flickr_navigate_sort_option" onclick="_getPhotos('date-taken-desc')">Date Taken Desc</a>
+            <a class="flickr_navigate_sort_option" onclick="_getPhotos('relevance')">Relevance</a>
+          </div>
+        </div>
+
         <div id="flickr_navigate">
           <span class="flickr_navigate_pages"></span>
         </div>
-        
+        <div class="clear"></div>
         
         <div id="flickrContainer" class="clearfix"></div>
       </article>

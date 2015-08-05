@@ -3,34 +3,35 @@ var flickr_URL = "https://api.flickr.com/services/rest/",
     API_KEY = '2aaa4bca5ad82a50eebeb80bd04f5564';
     
 var params = {
-  "method": "flickr.people.getPhotos",
-  "api_key": API_KEY,
-  "user_id": '132365033@N08', // IBM
-  "extras": [
-      "description",
-      "date_upload",
-      "date_taken",
-      "owner_name",
-      "icon_server",
-      "geo",
-      "tags",
-      "machine_tags",
-      "o_dims",
-      "views",
-      "media",
-      "path_alias",
-      "url_sq",
-      "url_s",
-      "url_m",
-      "url_l",
-      "url_o"
+  //'method': 'flickr.people.getPhotos',
+  'method': 'flickr.photos.search',
+  'api_key': API_KEY,
+  'user_id': '132365033@N08', // IBM
+  'extras': [
+      'description',
+      'date_upload',
+      'date_taken',
+      'owner_name',
+      'icon_server',
+      'geo',
+      'tags',
+      'machine_tags',
+      'o_dims',
+      'views',
+      'media',
+      'path_alias',
+      'url_sq',
+      'url_s',
+      'url_m',
+      'url_l',
+      'url_o'
   ],
-  "per_page": 8,
-  "format": "json",
-  "nojsoncallback": "1",
+  'per_page': 8,
+  'format': 'json',
+  'nojsoncallback': '1'
 }
 
-
+// Join all arguments into string
 function query(params) {
   var query_str = "?";
   for (var param_arg in params) {
@@ -65,14 +66,14 @@ function _flickrTemplate(data){
     
     // append each result (image) to variable
     results += '<div id="'+item.id+'" class="flickr_item">'+
-          '<a href="'+item.url_o+'" title="'+item.title+'" data-lightbox="flickr" data-title="'+item.title+'">'+
-            '<div class="flickr_img_wrapper" style="background-image:url('+item.url_m+');"></div>'+
-            '<div class="flickr_title_wrapper">'+
-              '<h2 class="flickr_img_title">'+item.title+'</h2>'+
-            '</div>'+
-            tags_wrapper +
-          '</a>'+
-        '</div>';
+            '<a href="'+item.url_o+'" title="'+item.title+'" data-lightbox="flickr" data-title="'+item.title+'">'+
+              '<div class="flickr_img_wrapper" style="background-image:url('+item.url_m+');"></div>'+
+              '<div class="flickr_title_wrapper">'+
+                '<h2 class="flickr_img_title">'+item.title+'</h2>'+
+              '</div>'+
+              tags_wrapper +
+            '</a>'+
+          '</div>';
     
   });
 
@@ -80,14 +81,13 @@ function _flickrTemplate(data){
 
 }
 
-
-function _getPhotos(){
-  $.getJSON(flickr_URL + query(params),
-    function (data) {  
-      
-      //console.log(data);
-      //console.log(flickr_URL + query(params));
-          
+function _getPhotos(option){
+  if (option) {
+    var sort = '&sort=' + option;
+  }
+  
+  $.getJSON(flickr_URL + query(params) + sort,
+    function (data) {
       $.each(data.photos.photo, function (i, item) {
         _flickrTemplate(data);
       });
@@ -113,7 +113,8 @@ function _paginatePhotos(getPage){
   $.getJSON(flickr_URL + query(params) + '&page=' + getPage,
     function (data) {
 
-      console.log(data);
+      //console.log(data);
+      //console.log(flickr_URL + query(params));
 
       // Checking object
       var current_page = data.photos.page,
@@ -157,7 +158,7 @@ $(document).ready( function(){
   $('#search_tags').keyup(function(e) {
     if (e.keyCode == 13) {
       var sVal = $(this).val();
-      console.log(sVal);
+      //console.log(sVal);
       
       if (!sVal){
         // do nothing
@@ -168,4 +169,10 @@ $(document).ready( function(){
       }    
     }
   });
+  
+  $('.flickr_navigate_sort_show_mobile').click( function() {
+    $(this).toggleClass('sort_mobile_show_mobile_active');
+    $('.flickr_navigate_sort_mobile_wrapper').toggleClass('sort_mobile_active');
+  });
+  
 });
