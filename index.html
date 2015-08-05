@@ -4,15 +4,51 @@
   
   <title>Flickr API Exercise</title>
   
+  <link href="css/centurion-grid.css" rel="stylesheet" />
   <link href="css/flickr-api.css" rel="stylesheet" />
   
 </head>
 <body>
   
-  <div id="flickrContainer"></div>
+  <header>
+    <div class="ctn-container ctn-container-full">
+      <div class="ctn-grid-12 ctn-tablet-6">
+        <h1>Flickr API Exercise</h1>
+      </div>
+      <div class="ctn-grid-12 ctn-tablet-6">
+        <input type="text" id="searchFlickr" placeholder="Search tags" />
+      </div>
+    </div>
+  </header>
+  <!-- //end of header -->
   
   
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <section id="content">
+    <div class="ctn-container ctn-container-full">
+        
+      <article class="ctn-grid-24">        
+        <header>
+          <h2>Check Out Some Amazing Shots</h2>
+        </header>
+        
+        <div id="flickrContainer" class="clearfix"></div>
+      </article>
+      <!-- //end of article -->
+      
+    </div>
+  </section>
+  
+  
+  <footer>
+    <div class="ctn-container ctn-container-full">
+      <div class="ctn-grid-12">
+        <p>Footer goes here.</p>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <script src="js/libs/jquery-1.11.3.min.js" type="text/javascript"></script>
   <script src="js/flickr-api.js" type="text/javascript"></script>
   
 </body>
