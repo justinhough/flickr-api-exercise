@@ -113,6 +113,8 @@ function _paginatePhotos(getPage){
   $.getJSON(flickr_URL + query(params) + '&page=' + getPage,
     function (data) {
 
+      //console.log(data);
+      //console.log(flickr_URL + query(params));
 
       // Checking object
       var current_page = data.photos.page,
