@@ -122,6 +122,24 @@ header h1 {
   float: left;
   width: 25%;
 }
+
+@media screen and (max-width: 760px) {
+  .flickr_item {
+    width: 33%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .flickr_item {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .flickr_item {
+    width: 100%;
+  }
+}
+
+
 .flickr_item a {
   border: 1px solid #DDD;
   color: #555;
