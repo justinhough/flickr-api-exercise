@@ -3,34 +3,35 @@ var flickr_URL = "https://api.flickr.com/services/rest/",
     API_KEY = '2aaa4bca5ad82a50eebeb80bd04f5564';
     
 var params = {
-  "method": "flickr.people.getPhotos",
-  "api_key": API_KEY,
-  "user_id": '132365033@N08', // IBM
-  "extras": [
-      "description",
-      "date_upload",
-      "date_taken",
-      "owner_name",
-      "icon_server",
-      "geo",
-      "tags",
-      "machine_tags",
-      "o_dims",
-      "views",
-      "media",
-      "path_alias",
-      "url_sq",
-      "url_s",
-      "url_m",
-      "url_l",
-      "url_o"
+  //'method': 'flickr.people.getPhotos',
+  'method': 'flickr.photos.search',
+  'api_key': API_KEY,
+  'user_id': '132365033@N08', // IBM
+  'extras': [
+      'description',
+      'date_upload',
+      'date_taken',
+      'owner_name',
+      'icon_server',
+      'geo',
+      'tags',
+      'machine_tags',
+      'o_dims',
+      'views',
+      'media',
+      'path_alias',
+      'url_sq',
+      'url_s',
+      'url_m',
+      'url_l',
+      'url_o'
   ],
-  "per_page": 8,
-  "format": "json",
-  "nojsoncallback": "1",
+  'per_page': 8,
+  'format': 'json',
+  'nojsoncallback': '1'
 }
 
-
+// Join all arguments into string
 function query(params) {
   var query_str = "?";
   for (var param_arg in params) {
